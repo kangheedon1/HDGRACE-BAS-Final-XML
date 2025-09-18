@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accounts note="이 XML은 색상/서체 정보를 style 속성으로 포함합니다. 뷰어가 지원할 때 색상이 보입니다." encoding="UTF-8">
+  <record>
+    <아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">honggildong</아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">abc123</비번>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;123.45.67.89:11045;u;pw&quot;</프록시>
+    <상태 style="color:#27AE60;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">정상</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">cookieVal</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fpVal</핑거>
+  </record>
+  <record>
+    <아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">kimdong</아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">1q2w3e</비번>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;98.76.54.32:11045;user01;pass01&quot;</프록시>
+    <상태 style="color:#E74C3C;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">차단</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">ckVal2</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fpVal2</핑거>
+  </record>
+  <record>
+    <아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">hgildong</아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">a1b2c3</비번>
+    <복구 style="color:#16A085;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">rec@mail.com</복구>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;45.153.20.233:11045;LD1S4c;zM70gq&quot;</프록시>
+    <상태 style="color:#27AE60;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">정상</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">cookieA</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fpA</핑거>
+  </record>
+  <record>
+    <아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">userbeta</아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">pass789</비번>
+    <복구 style="color:#16A085;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">recovery@mail</복구>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;20.30.40.50:8080;uBeta;pBeta&quot;</프록시>
+    <상태 style="color:#F39C12;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">점검</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">cookieB</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fpB</핑거>
+  </record>
+  <record>
+    <아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">newgmailid</아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">pass789</비번>
+    <복구 style="color:#16A085;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">rec@mail.com</복구>
+    <이중인증 style="color:#D35400;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">JBSWY3DPEHPK3PXP</이중인증>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;98.76.54.32:11045;u;pw&quot;</프록시>
+    <상태 style="color:#27AE60;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">정상</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">cookieVal</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fpVal</핑거>
+  </record>
+  <record>
+    <아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">alphauser</아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">qwe123!!</비번>
+    <복구 style="color:#16A085;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">r@mail.co</복구>
+    <이중인증 style="color:#D35400;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">NB2W45DPEHPK4PXQ</이중인증>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;10.20.30.40:3128;alpha;apw&quot;</프록시>
+    <상태 style="color:#9B59B6;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">제한</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">cookieX</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fpX</핑거>
+  </record>
+  <record>
+    <만든아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">mg_id_001</만든아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">Abc!2345</비번>
+    <복구 style="color:#16A085;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">rec1@mail.com</복구>
+    <이중인증 style="color:#D35400;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">JBSWY3DPEHPK3PXP</이중인증>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;123.123.123.123:9000;usr;pwd&quot;</프록시>
+    <상태 style="color:#27AE60;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">정상</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">cval1</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fval1</핑거>
+  </record>
+  <record>
+    <만든아이디 style="color:#2E86DE;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">mg_id_002</만든아이디>
+    <비번 style="color:#8E44AD;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">Zxc!9876</비번>
+    <복구 style="color:#16A085;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">rec2@mail.com</복구>
+    <이중인증 style="color:#D35400;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">NB2W45DPEHPK4PXQ</이중인증>
+    <프록시 style="color:#34495E;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">&quot;222.222.222.222:1080;usr2;pwd2&quot;</프록시>
+    <상태 style="color:#E74C3C;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">차단</상태>
+    <쿠키 style="color:#7F8C8D;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">cval2</쿠키>
+    <핑거 style="color:#2ECC71;font-family:Pretendard, 나눔고딕, Malgun Gothic;font-size:12pt;">fval2</핑거>
+  </record>
+</accounts>
