@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  hdgrace:
+    build: .
+    container_name: hdgrace-bas-xml-generator
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./output:/app/output
+      - ./logs:/app/logs
+      - ./database:/app/database
+      - ./configs:/app/configs
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # 선택적: PostgreSQL 데이터베이스
+  postgres:
+    image: postgres:15-alpine
+    container_name: hdgrace-postgres
+    environment:
+      POSTGRES_DB: hdgrace
+      POSTGRES_USER: hdgrace
+      POSTGRES_PASSWORD: hdgrace_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # 선택적: Redis 캐시
+  redis:
+    image: redis:7-alpine
+    container_name: hdgrace-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: hdgrace-network
