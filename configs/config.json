@@ -1,0 +1,11 @@
+{
+  "project_name": "HDGRACE-BAS-Final",
+  "version": "29.3.1",
+  "target_features": 7170,
+  "target_size_mb": 700,
+  "max_generation_time": 600,
+  "output_path": "/home/runner/work/HDGRACE-BAS-Final-XML-BAS-29.3.1/HDGRACE-BAS-Final-XML-BAS-29.3.1/output",
+  "log_level": "INFO",
+  "enable_monitoring": true,
+  "enable_statistics": true
+}
