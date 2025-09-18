@@ -1868,169 +1868,169 @@ section(4,1,1,0,function(){{
         script_content = self.generate_comprehensive_script()
         
         # XML 루트 생성
-            if LXML_AVAILABLE:
-                root = lxml_etree.Element("BrowserAutomationStudioProject")
-                # 스크립트 섹션 - CDATA 수동 처리
-                script_elem = lxml_etree.SubElement(root, "Script")
-                script_elem.text = script_content  # CDATA 없이 직접 삽입
+        if LXML_AVAILABLE:
+            root = lxml_etree.Element("BrowserAutomationStudioProject")
+            # 스크립트 섹션 - CDATA 수동 처리
+            script_elem = lxml_etree.SubElement(root, "Script")
+            script_elem.text = script_content  # CDATA 없이 직접 삽입
+            
+            # 모듈 정보
+            module_info_elem = lxml_etree.SubElement(root, "ModuleInfo")
+            module_info_elem.text = json.dumps(self.modules_data, indent=2)
+            
+            # 모듈 목록
+            modules_elem = lxml_etree.SubElement(root, "Modules")
+            
+            # UI 요소들
+            ui_elem = lxml_etree.SubElement(root, "UI")
+            for ui_element in self.ui_elements:
+                elem = lxml_etree.SubElement(ui_elem, ui_element.type)
+                elem.set("name", ui_element.name)
+                elem.set("visible", "true")  # 강제로 visible="true" 설정
+                elem.set("enabled", str(ui_element.enabled).lower())
+                elem.set("x", str(ui_element.x))
+                elem.set("y", str(ui_element.y))
+                elem.set("width", str(ui_element.width))
+                elem.set("height", str(ui_element.height))
+                if ui_element.text:
+                    elem.set("text", ui_element.text)
+                if ui_element.tooltip:
+                    elem.set("tooltip", ui_element.tooltip)
+            
+            # 액션들
+            actions_elem = lxml_etree.SubElement(root, "Actions")
+            for action in self.actions:
+                action_elem = lxml_etree.SubElement(actions_elem, "Action")
+                action_elem.set("name", action.name)
+                action_elem.set("type", action.type)
+                action_elem.set("enabled", str(action.enabled).lower())
+                action_elem.set("timeout", str(action.timeout))
+                action_elem.set("retryCount", str(action.retry_count))
                 
-                # 모듈 정보
-                module_info_elem = lxml_etree.SubElement(root, "ModuleInfo")
-                module_info_elem.text = json.dumps(self.modules_data, indent=2)
+                # 파라미터 추가
+                for key, value in action.parameters.items():
+                    param_elem = lxml_etree.SubElement(action_elem, "Parameter")
+                    param_elem.set("name", key)
+                    param_elem.set("value", str(value))
+            
+            # 매크로들
+            macros_elem = lxml_etree.SubElement(root, "Macros")
+            for macro in self.macros:
+                macro_elem = lxml_etree.SubElement(macros_elem, "Macro")
+                macro_elem.set("name", macro.name)
+                macro_elem.set("enabled", str(macro.enabled).lower())
+                macro_elem.set("loopCount", str(macro.loop_count))
                 
-                # 모듈 목록
-                modules_elem = lxml_etree.SubElement(root, "Modules")
-                
-                # UI 요소들
-                ui_elem = lxml_etree.SubElement(root, "UI")
-                for ui_element in self.ui_elements:
-                    elem = lxml_etree.SubElement(ui_elem, ui_element.type)
-                    elem.set("name", ui_element.name)
-                    elem.set("visible", "true")  # 강제로 visible="true" 설정
-                    elem.set("enabled", str(ui_element.enabled).lower())
-                    elem.set("x", str(ui_element.x))
-                    elem.set("y", str(ui_element.y))
-                    elem.set("width", str(ui_element.width))
-                    elem.set("height", str(ui_element.height))
-                    if ui_element.text:
-                        elem.set("text", ui_element.text)
-                    if ui_element.tooltip:
-                        elem.set("tooltip", ui_element.tooltip)
-                
-                # 액션들
-                actions_elem = lxml_etree.SubElement(root, "Actions")
-                for action in self.actions:
-                    action_elem = lxml_etree.SubElement(actions_elem, "Action")
+                # 매크로 액션들
+                macro_actions_elem = lxml_etree.SubElement(macro_elem, "Actions")
+                for action in macro.actions:
+                    action_elem = lxml_etree.SubElement(macro_actions_elem, "Action")
                     action_elem.set("name", action.name)
                     action_elem.set("type", action.type)
-                    action_elem.set("enabled", str(action.enabled).lower())
-                    action_elem.set("timeout", str(action.timeout))
-                    action_elem.set("retryCount", str(action.retry_count))
-                    
-                    # 파라미터 추가
                     for key, value in action.parameters.items():
-                        param_elem = lxml_etree.SubElement(action_elem, "Parameter")
-                        param_elem.set("name", key)
-                        param_elem.set("value", str(value))
+                        action_elem.set(key, str(value))
+            
+            # 프로젝트 설정
+            settings_elem = lxml_etree.SubElement(root, "Settings")
+            
+            # 데이터베이스 설정
+            db_elem = lxml_etree.SubElement(settings_elem, "Database")
+            db_elem.set("id", self.project.database_id)
+            db_elem.set("remote", str(self.project.connection_is_remote).lower())
+            db_elem.set("hidden", str(self.project.hide_database).lower())
+            
+            # 보안 설정
+            security_elem = lxml_etree.SubElement(settings_elem, "Security")
+            security_elem.set("protectionStrength", str(self.project.protection_strength))
+            security_elem.set("unusedModules", self.project.unused_modules)
+            
+            # 성능 설정
+            performance_elem = lxml_etree.SubElement(settings_elem, "Performance")
+            performance_elem.set("concurrentViewers", str(CONCURRENT_VIEWERS))
+            performance_elem.set("gmailCapacity", str(GMAIL_DATABASE_CAPACITY))
+            performance_elem.set("targetFeatures", str(TARGET_FEATURES))
+            
+        else:
+            root = ET.Element("BrowserAutomationStudioProject")
+            # 스크립트 섹션
+            script_elem = ET.SubElement(root, "Script")
+            script_elem.text = script_content
+            
+            # 모듈 정보
+            module_info_elem = ET.SubElement(root, "ModuleInfo")
+            module_info_elem.text = json.dumps(self.modules_data, indent=2)
+            
+            # 모듈 목록
+            modules_elem = ET.SubElement(root, "Modules")
+            
+            # UI 요소들
+            ui_elem = ET.SubElement(root, "UI")
+            for ui_element in self.ui_elements:
+                elem = ET.SubElement(ui_elem, ui_element.type)
+                elem.set("name", ui_element.name)
+                elem.set("visible", "true")  # 강제로 visible="true" 설정
+                elem.set("enabled", str(ui_element.enabled).lower())
+                elem.set("x", str(ui_element.x))
+                elem.set("y", str(ui_element.y))
+                elem.set("width", str(ui_element.width))
+                elem.set("height", str(ui_element.height))
+                if ui_element.text:
+                    elem.set("text", ui_element.text)
+                if ui_element.tooltip:
+                    elem.set("tooltip", ui_element.tooltip)
+            
+            # 액션들
+            actions_elem = ET.SubElement(root, "Actions")
+            for action in self.actions:
+                action_elem = ET.SubElement(actions_elem, "Action")
+                action_elem.set("name", action.name)
+                action_elem.set("type", action.type)
+                action_elem.set("enabled", str(action.enabled).lower())
+                action_elem.set("timeout", str(action.timeout))
+                action_elem.set("retryCount", str(action.retry_count))
                 
-                # 매크로들
-                macros_elem = lxml_etree.SubElement(root, "Macros")
-                for macro in self.macros:
-                    macro_elem = lxml_etree.SubElement(macros_elem, "Macro")
-                    macro_elem.set("name", macro.name)
-                    macro_elem.set("enabled", str(macro.enabled).lower())
-                    macro_elem.set("loopCount", str(macro.loop_count))
-                    
-                    # 매크로 액션들
-                    macro_actions_elem = lxml_etree.SubElement(macro_elem, "Actions")
-                    for action in macro.actions:
-                        action_elem = lxml_etree.SubElement(macro_actions_elem, "Action")
-                        action_elem.set("name", action.name)
-                        action_elem.set("type", action.type)
-                        for key, value in action.parameters.items():
-                            action_elem.set(key, str(value))
+                # 파라미터 추가
+                for key, value in action.parameters.items():
+                    param_elem = ET.SubElement(action_elem, "Parameter")
+                    param_elem.set("name", key)
+                    param_elem.set("value", str(value))
+            
+            # 매크로들
+            macros_elem = ET.SubElement(root, "Macros")
+            for macro in self.macros:
+                macro_elem = ET.SubElement(macros_elem, "Macro")
+                macro_elem.set("name", macro.name)
+                macro_elem.set("enabled", str(macro.enabled).lower())
+                macro_elem.set("loopCount", str(macro.loop_count))
                 
-                # 프로젝트 설정
-                settings_elem = lxml_etree.SubElement(root, "Settings")
-                
-                # 데이터베이스 설정
-                db_elem = lxml_etree.SubElement(settings_elem, "Database")
-                db_elem.set("id", self.project.database_id)
-                db_elem.set("remote", str(self.project.connection_is_remote).lower())
-                db_elem.set("hidden", str(self.project.hide_database).lower())
-                
-                # 보안 설정
-                security_elem = lxml_etree.SubElement(settings_elem, "Security")
-                security_elem.set("protectionStrength", str(self.project.protection_strength))
-                security_elem.set("unusedModules", self.project.unused_modules)
-                
-                # 성능 설정
-                performance_elem = lxml_etree.SubElement(settings_elem, "Performance")
-                performance_elem.set("concurrentViewers", str(CONCURRENT_VIEWERS))
-                performance_elem.set("gmailCapacity", str(GMAIL_DATABASE_CAPACITY))
-                performance_elem.set("targetFeatures", str(TARGET_FEATURES))
-                
-            else:
-                root = ET.Element("BrowserAutomationStudioProject")
-                # 스크립트 섹션
-                script_elem = ET.SubElement(root, "Script")
-                script_elem.text = script_content
-                
-                # 모듈 정보
-                module_info_elem = ET.SubElement(root, "ModuleInfo")
-                module_info_elem.text = json.dumps(self.modules_data, indent=2)
-                
-                # 모듈 목록
-                modules_elem = ET.SubElement(root, "Modules")
-                
-                # UI 요소들
-                ui_elem = ET.SubElement(root, "UI")
-                for ui_element in self.ui_elements:
-                    elem = ET.SubElement(ui_elem, ui_element.type)
-                    elem.set("name", ui_element.name)
-                    elem.set("visible", "true")  # 강제로 visible="true" 설정
-                    elem.set("enabled", str(ui_element.enabled).lower())
-                    elem.set("x", str(ui_element.x))
-                    elem.set("y", str(ui_element.y))
-                    elem.set("width", str(ui_element.width))
-                    elem.set("height", str(ui_element.height))
-                    if ui_element.text:
-                        elem.set("text", ui_element.text)
-                    if ui_element.tooltip:
-                        elem.set("tooltip", ui_element.tooltip)
-                
-                # 액션들
-                actions_elem = ET.SubElement(root, "Actions")
-                for action in self.actions:
-                    action_elem = ET.SubElement(actions_elem, "Action")
+                # 매크로 액션들
+                macro_actions_elem = ET.SubElement(macro_elem, "Actions")
+                for action in macro.actions:
+                    action_elem = ET.SubElement(macro_actions_elem, "Action")
                     action_elem.set("name", action.name)
                     action_elem.set("type", action.type)
-                    action_elem.set("enabled", str(action.enabled).lower())
-                    action_elem.set("timeout", str(action.timeout))
-                    action_elem.set("retryCount", str(action.retry_count))
-                    
-                    # 파라미터 추가
                     for key, value in action.parameters.items():
-                        param_elem = ET.SubElement(action_elem, "Parameter")
-                        param_elem.set("name", key)
-                        param_elem.set("value", str(value))
-                
-                # 매크로들
-                macros_elem = ET.SubElement(root, "Macros")
-                for macro in self.macros:
-                    macro_elem = ET.SubElement(macros_elem, "Macro")
-                    macro_elem.set("name", macro.name)
-                    macro_elem.set("enabled", str(macro.enabled).lower())
-                    macro_elem.set("loopCount", str(macro.loop_count))
-                    
-                    # 매크로 액션들
-                    macro_actions_elem = ET.SubElement(macro_elem, "Actions")
-                    for action in macro.actions:
-                        action_elem = ET.SubElement(macro_actions_elem, "Action")
-                        action_elem.set("name", action.name)
-                        action_elem.set("type", action.type)
-                        for key, value in action.parameters.items():
-                            action_elem.set(key, str(value))
-                
-                # 프로젝트 설정
-                settings_elem = ET.SubElement(root, "Settings")
-                
-                # 데이터베이스 설정
-                db_elem = ET.SubElement(settings_elem, "Database")
-                db_elem.set("id", self.project.database_id)
-                db_elem.set("remote", str(self.project.connection_is_remote).lower())
-                db_elem.set("hidden", str(self.project.hide_database).lower())
-                
-                # 보안 설정
-                security_elem = ET.SubElement(settings_elem, "Security")
-                security_elem.set("protectionStrength", str(self.project.protection_strength))
-                security_elem.set("unusedModules", self.project.unused_modules)
-                
-                # 성능 설정
-                performance_elem = ET.SubElement(settings_elem, "Performance")
-                performance_elem.set("concurrentViewers", str(CONCURRENT_VIEWERS))
-                performance_elem.set("gmailCapacity", str(GMAIL_DATABASE_CAPACITY))
-                performance_elem.set("targetFeatures", str(TARGET_FEATURES))
+                        action_elem.set(key, str(value))
+            
+            # 프로젝트 설정
+            settings_elem = ET.SubElement(root, "Settings")
+            
+            # 데이터베이스 설정
+            db_elem = ET.SubElement(settings_elem, "Database")
+            db_elem.set("id", self.project.database_id)
+            db_elem.set("remote", str(self.project.connection_is_remote).lower())
+            db_elem.set("hidden", str(self.project.hide_database).lower())
+            
+            # 보안 설정
+            security_elem = ET.SubElement(settings_elem, "Security")
+            security_elem.set("protectionStrength", str(self.project.protection_strength))
+            security_elem.set("unusedModules", self.project.unused_modules)
+            
+            # 성능 설정
+            performance_elem = ET.SubElement(settings_elem, "Performance")
+            performance_elem.set("concurrentViewers", str(CONCURRENT_VIEWERS))
+            performance_elem.set("gmailCapacity", str(GMAIL_DATABASE_CAPACITY))
+            performance_elem.set("targetFeatures", str(TARGET_FEATURES))
         
         # XML 문자열로 변환
         if LXML_AVAILABLE:
